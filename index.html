@@ -3,41 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QSmart | كيو سمارت</title>
+    <title>Qsmart - قاف ذكي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Cairo', 'sans-serif'] },
+                    colors: {
+                        qsmart: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            700: '#6d28d9',
+                            900: '#4c1d95',
+                            dark: '#1e1b4b'
+                        },
+                        warm: { 50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-            color: #333;
+        body { background-color: #fafaf9; color: #1c1917; scroll-behavior: smooth; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: auto; height: 40vh; min-height: 300px; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 { color: #2c3e50; }
-        p { font-size: 1.2rem; }
-        .badge {
-            background-color: #27ae60;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>مرحباً بكم في QSmart</h1>
-        <p>الموقع الرسمي قيد الإنشاء</p>
-        <div class="badge">نطاق معتمد: qsmart.sa</div>
-    </div>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass-card shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-3xl font-extrabold text-qsmart-900">Q<span class="text-qsmart-500">smart</span></span>
+                    <span class="text-lg font-bold text-gray-600 border-r-2 border-gray-300 pr-2 mr-2">قاف ذكي</span>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#about" class="text-gray-700 hover:text-qsmart-700 font-semibold transition-colors">من نحن</a>
+                    <a href="#services" class="text-gray-700 hover:text-qsmart-700 font-semibold transition-colors">خدماتنا</a>
+                    <a href="#clients" class="text-gray-700 hover:text-qsmart-700 font-semibold transition-colors">شركاء النجاح</a>
+                    <a href="#contact" class="bg-qsmart-900 text-white px-5 py-2 rounded-full hover:bg-qsmart-700 transition-colors shadow-md font-semibold">تواصل معنا</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 min-h-[80vh]">
+        <div class="md:w-1/2 flex flex-col gap-6 relative z-10">
+            <div class="inline-block bg-qsmart-100 text-qsmart-900 px-4 py-1.5 rounded-full text-sm font-bold w-max mb-2">🚀 التحول الرقمي يبدأ من هنا</div>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-qsmart-dark leading-tight">
+                شريكك الموثوق في عالم <span class="text-transparent bg-clip-text bg-gradient-to-l from-qsmart-500 to-qsmart-900">التقنية</span>
+            </h1>
+            <p class="text-xl text-gray-600 leading-relaxed font-medium">تأسست قاف ذكي (Qsmart) لتكون المحرك التقني والذراع الرقمي لعملائنا. نقدم حلولاً مبتكرة في مجالات البرمجة، تطوير الأنظمة، والحلول السحابية.</p>
+            <div class="flex gap-4 mt-4">
+                <a href="#services" class="bg-qsmart-900 text-white px-8 py-3.5 rounded-full hover:bg-qsmart-700 transition-all shadow-lg font-bold text-lg">استكشف خدماتنا</a>
+                <a href="#contact" class="bg-white text-qsmart-900 border-2 border-qsmart-100 px-8 py-3.5 rounded-full hover:border-qsmart-500 transition-all font-bold text-lg">استشارة تقنية</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 grid grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-2xl shadow-xl transform translate-y-8 hover:-translate-y-2 transition-transform border border-warm-100">
+                <div class="text-4xl mb-4">💡</div>
+                <h3 class="text-xl font-bold text-qsmart-900 mb-2">ابتكار مستمر</h3>
+                <p class="text-gray-500 text-sm">نسابق الزمن لتطوير أفكار برمجية جديدة تخدم تطلعات السوق.</p>
+            </div>
+            <div class="bg-gradient-to-br from-qsmart-900 to-qsmart-700 p-6 rounded-2xl shadow-xl text-white transform hover:-translate-y-2 transition-transform">
+                <div class="text-4xl mb-4">🛡️</div>
+                <h3 class="text-xl font-bold mb-2">أمان وموثوقية</h3>
+                <p class="text-qsmart-100 text-sm">حلول تقنية متقدمة، آمنة، ومرنة تواكب تقلبات السوق.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-xl col-span-2 flex items-center justify-between border border-warm-100">
+                <div>
+                    <h3 class="text-2xl font-bold text-qsmart-900">الكفاءة التشغيلية</h3>
+                    <p class="text-gray-500 mt-1">نساعدك على تبسيط الأعمال وأتمتتها بالكامل.</p>
+                </div>
+                <div class="text-5xl">⚙️</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-qsmart-dark mb-4">هويتنا الاستراتيجية</h2>
+                <p class="text-lg text-gray-600">نؤمن بأن الرؤية الواضحة والقيم الراسخة هي المحرك الأساسي لتقديم خدمات تقنية استثنائية وبناء شراكات مستدامة.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-warm-50 p-8 rounded-3xl border border-warm-200">
+                    <div class="text-5xl mb-6">🔭</div>
+                    <h3 class="text-2xl font-bold text-qsmart-900 mb-4">رؤيتنا</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">أن نكون الخيار الأول والملهم للشركات في مجال الحلول التقنية الذكية، وقيادة دفة التحول الرقمي.</p>
+                </div>
+                <div class="bg-warm-50 p-8 rounded-3xl border border-warm-200">
+                    <div class="text-5xl mb-6">🎯</div>
+                    <h3 class="text-2xl font-bold text-qsmart-900 mb-4">رسالتنا</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">تمكين المؤسسات عبر تقديم حلول تقنية متقدمة تواكب تقلبات السوق وتحقق نمواً مستداماً.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-warm-50 border-y border-warm-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-qsmart-dark mb-12 text-center">خدماتنا الاحترافية</h2>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-6 rounded-3xl shadow-lg border border-warm-100">
+                    <h3 class="text-xl font-bold text-center text-qsmart-900 mb-6">توزيع محفظة الخدمات</h3>
+                    <div class="chart-container"><canvas id="servicesChart"></canvas></div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="grid grid-cols-2 gap-3 mb-6" id="serviceButtons"></div>
+                    <div class="bg-qsmart-900 text-white p-8 rounded-3xl shadow-xl min-h-[200px]" id="serviceDetailBox">
+                        <div class="text-5xl mb-4" id="sdIcon">💻</div>
+                        <h3 class="text-2xl font-bold mb-3" id="sdTitle">اختر خدمة</h3>
+                        <p class="text-qsmart-100 text-lg" id="sdDesc">اضغط على الأزرار لاستكشاف تفاصيل خدماتنا.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-qsmart-dark text-white text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-12">جاهزون لنقل أعمالكم إلى آفاق جديدة</h2>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                    <div class="text-4xl mb-4">📞</div>
+                    <h4 class="font-bold mb-2">واتساب</h4>
+                    <p dir="ltr" class="text-lg">0555934914</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                    <div class="text-4xl mb-4">✉️</div>
+                    <h4 class="font-bold mb-2">البريد الإلكتروني</h4>
+                    <p class="text-md">Thamer.allzaid@gmail.com</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/20">
+                    <div class="text-4xl mb-4">🌐</div>
+                    <h4 class="font-bold mb-2">الموقع</h4>
+                    <a href="https://qsmart.sa" class="underline">www.qsmart.sa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#151236] text-center py-6 text-gray-400 text-sm">
+        <p>جميع الحقوق محفوظة &copy; قاف ذكي (Qsmart) 2026</p>
+    </footer>
+
+    <script>
+        const servicesData = [
+            { id: 0, title: "تطوير البرمجيات", icon: "💻", desc: "تصميم وبناء أنظمة مخصصة لإدارة العمليات التجارية بدقة وفعالية.", weight: 20 },
+            { id: 1, title: "المحاسبة السحابية", icon: "☁️", desc: "إدارة مالية متكاملة تضمن الدقة والأمان وسهولة الوصول من أي مكان.", weight: 20 },
+            { id: 2, title: "تصميم المواقع", icon: "🌐", desc: "واجهات احترافية وتجربة مستخدم متميزة تليق بهويتك الرقمية.", weight: 15 },
+            { id: 3, title: "البنية التحتية", icon: "🔌", desc: "تمديد الشبكات والفايبر وتوريد الأجهزة المتطورة لضمان استقرار الاتصال.", weight: 20 },
+            { id: 4, title: "الأنظمة الأمنية", icon: "📹", desc: "تركيب وضبط أنظمة مراقبة ذكية بأحدث التقنيات لتعزيز الحماية.", weight: 15 },
+            { id: 5, title: "الدعم الفني", icon: "🎧", desc: "دعم تقني فوري ميداني وعن بعد لحل المشكلات التقنية المعقدة.", weight: 10 }
+        ];
+
+        function initServices() {
+            const btnContainer = document.getElementById('serviceButtons');
+            servicesData.forEach((srv, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'bg-white hover:bg-qsmart-50 text-qsmart-900 border border-qsmart-200 p-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2';
+                btn.innerHTML = `<span>${srv.icon}</span><span>${srv.title}</span>`;
+                btn.onclick = () => {
+                    document.getElementById('sdTitle').textContent = srv.title;
+                    document.getElementById('sdDesc').textContent = srv.desc;
+                    document.getElementById('sdIcon').textContent = srv.icon;
+                };
+                btnContainer.appendChild(btn);
+            });
+            btnContainer.firstChild.click();
+        }
+
+        function initCharts() {
+            const ctx = document.getElementById('servicesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: servicesData.map(s => s.title),
+                    datasets: [{
+                        data: servicesData.map(s => s.weight),
+                        backgroundColor: ['#4c1d95', '#6d28d9', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe'],
+                        borderWidth: 2, borderColor: '#ffffff'
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initServices();
+            initCharts();
+        });
+    </script>
 </body>
 </html>
